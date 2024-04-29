@@ -5,9 +5,10 @@ import ContactUs from "./pages/ContactUs";
 import Membership from "./pages/Membership";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Exercises from "./pages/exercises";
-import Carousel from "./components/Carousel";
 import Errormessage from "./components/Errormessage";
+import Exercises from "./pages/exercises";
+import Viewdetails from "./pages/Viewdetails";
+import { ExerciseProvider } from "./Context/Exercisecontext"; // Import the context provider
 
 const App = () => {
   const router = createBrowserRouter([
@@ -40,17 +41,21 @@ const App = () => {
       element: <Exercises />,
     },
     {
-      path: "/carousel",
-      element: <Carousel />,
-    },
-
-    {
       path: "/modal",
       element: <Errormessage />,
     },
+    {
+      path: "/exercises/exercisemodal",
+      element: <Viewdetails />,
+    },
   ]);
 
-  return <RouterProvider router={router} />;
+  // Wrap the RouterProvider with ExerciseProvider
+  return (
+    <ExerciseProvider>
+      <RouterProvider router={router} />
+    </ExerciseProvider>
+  );
 };
 
 export default App;

@@ -2,6 +2,7 @@ const Exercise = require("./../Models/exerciseModel");
 const ApiFeatures = require("./../utils/apiFeatures");
 
 exports.getAllExercises = async (req, res, next) => {
+  console.log(req.query);
   const features = new ApiFeatures(Exercise.find(), req.query)
     .filter()
     .limitFields()
